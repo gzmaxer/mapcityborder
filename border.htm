@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml">
+ 
+<head>
+ 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ 
+<title>map border</title>
+ 
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.1&services=true">
+ 
+</script>
+ 
+<style type="text/css">
+ 
+body{font-size:13px;margin:10px}
+ 
+#container{width:800px;height:500px;border:1px solid gray}
+ 
+ 
+ 
+</style>
+ 
+</head>
+ 
+<body>
+ 
+<div id="container"></div>
+ 
+ 
+ 
+<script type="text/javascript">
+ 
+getBoundary("佛山","blue")
+ 
+getBoundary("中山","green")
+ 
+getBoundary("广州","red")
+ 
+ 
+ 
+ 
+ 
+if (typeof console == "undefined"){
+ 
+  window.console = {log: function(){}};
+ 
+}
+ 
+ 
+ 
+var map = new BMap.Map("container");
+ 
+ 
+ 
+map.centerAndZoom(new BMap.Point(113.339845,23.128291), 9);
+ 
+var stdMapCtrl = new BMap.NavigationControl({type: BMAP_NAVIGATION_CONTROL_SMALL})
+ 
+map.addControl(stdMapCtrl);
+ 
+map.enableScrollWheelZoom();
+ 
+map.enableContinuousZoom();
+ 
+ 
+ 
+function getBoundary(name,color){      
+ 
+    var bdary = new BMap.Boundary();
+ 
+    bdary.get(name, function(rs){
+ 
+        console.log(rs);
+ 
+       
+ 
+        var bounds;
+ 
+        var maxNum = -1, maxPly;
+ 
+    
+ 
+        var count = rs.boundaries.length;
+ 
+        for(var i = 0; i < count; i++){
+ 
+            var ply = new BMap.Polygon(rs.boundaries[i], {strokeWeight: 1, strokeColor: "#ff0000",FillOpacity:0});
+ 
+            ply.setFillColor(color);
+ 
+            ply.setFillOpacity("0.2");
+ 
+            map.addOverlay(ply); 
+ 
+ 
+ 
+             
+ 
+            var arrPts = ply.getPoints();
+ 
+             
+ 
+            if(arrPts.length > maxNum){
+ 
+                maxNum = arrPts.length;
+ 
+                maxPly = ply;
+ 
+            }
+ 
+             
+ 
+        }
+ 
+ 
+ 
+        if(maxPly){
+ 
+            map.setViewport(maxPly.getPoints());
+ 
+        }
+ 
+                 
+ 
+    });  
+ 
+}
+ 
+ 
+ 
+</script>

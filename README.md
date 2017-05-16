@@ -8,7 +8,8 @@
 
 http://www.yyue.org/file/bound.html
 
- 
+<img src=http://pic002.cnblogs.com/images/2011/342440/2011102411563783.jpg/>
+
 注意，百度地图api 1.1才支持这个功能,在1.2中是不支持的。
 
 相关说明可以参考

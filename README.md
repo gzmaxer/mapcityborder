@@ -1,7 +1,6 @@
 # mapcityborder
 百度地图省市县边界区域作图
-说明，本文章是参考了酸奶小妹的改写的，原文在 http://www.ui-love.com/baidumap/city/Boundary.html
-
+说明，本文章是参考了酸奶小妹的一部分说明。
 有几个人问起多个县市轮廓的，分享一下。
 
 多个县市轮廓的效果如这个url所示:
